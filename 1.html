@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Mom 🌸</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --rose: #e8637a;
+      --blush: #f4b8c1;
+      --cream: #fdf6f0;
+      --gold: #c9a96e;
+      --deep: #3d1a24;
+      --petal: #f9dde2;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--cream);
+      font-family: 'Cormorant Garamond', serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    .petal-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .petal {
+      position: absolute;
+      top: -60px;
+      width: 18px;
+      height: 22px;
+      border-radius: 50% 10% 50% 10%;
+      opacity: 0;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0%   { transform: translateY(0) rotate(0deg) scale(1);   opacity: 0; }
+      10%  { opacity: .7; }
+      90%  { opacity: .4; }
+      100% { transform: translateY(110vh) rotate(540deg) scale(.6); opacity: 0; }
+    }
+
+    .card-wrap {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 4px;
+      max-width: 560px;
+      width: 100%;
+      padding: 60px 52px 52px;
+      box-shadow: 0 8px 60px rgba(61,26,36,.12), 0 2px 12px rgba(61,26,36,.06);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      animation: rise .9s cubic-bezier(.22,1,.36,1) both;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .card::before, .card::after {
+      content: '';
+      position: absolute;
+      width: 80px; height: 80px;
+      border-color: var(--gold);
+      border-style: solid;
+      opacity: .4;
+    }
+    .card::before { top: 18px; left: 18px; border-width: 1px 0 0 1px; }
+    .card::after  { bottom: 18px; right: 18px; border-width: 0 1px 1px 0; }
+
+    .ribbon {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--blush), var(--rose), var(--gold), var(--rose), var(--blush));
+      background-size: 300% 100%;
+      animation: shimmer 4s linear infinite;
+    }
+    @keyframes shimmer { to { background-position: 300% 0; } }
+
+    .flowers {
+      font-size: 2.8rem;
+      margin-bottom: 18px;
+      display: block;
+      animation: sway 3s ease-in-out infinite alternate;
+    }
+    @keyframes sway { from { transform: rotate(-4deg); } to { transform: rotate(4deg); } }
+
+    .subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--rose);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      animation: fadeIn 1s .3s both;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 6vw, 3.2rem);
+      color: var(--deep);
+      line-height: 1.1;
+      margin-bottom: 8px;
+      animation: fadeIn 1s .5s both;
+    }
+
+    h1 em {
+      display: block;
+      font-style: italic;
+      color: var(--rose);
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 28px 0;
+      animation: fadeIn 1s .7s both;
+    }
+    .divider span { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--blush), transparent); }
+    .divider i { color: var(--gold); font-style: normal; font-size: 1.1rem; }
+
+    .message {
+      font-size: 1.08rem;
+      line-height: 1.85;
+      color: #5a3840;
+      font-weight: 300;
+      animation: fadeIn 1s .9s both;
+    }
+
+    .message strong {
+      font-weight: 400;
+      color: var(--rose);
+    }
+
+    .heart-row {
+      margin-top: 36px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      animation: fadeIn 1s 1.1s both;
+    }
+
+    .heart {
+      font-size: 1.5rem;
+      animation: pulse 1.4s ease-in-out infinite;
+    }
+    .heart:nth-child(2) { animation-delay: .2s; }
+    .heart:nth-child(3) { animation-delay: .4s; }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50%       { transform: scale(1.25); }
+    }
+
+    .candles {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin: 32px 0 8px;
+      animation: fadeIn 1s 1.3s both;
+    }
+
+    .candle {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .flame {
+      width: 10px;
+      height: 18px;
+      background: radial-gradient(ellipse at 60% 70%, #fff7a0, #f9a825 55%, #e64a19 100%);
+      border-radius: 50% 50% 30% 30%;
+      animation: flicker 1.1s ease-in-out infinite alternate;
+      box-shadow: 0 0 8px 3px rgba(249,168,37,.5);
+    }
+
+    .candle:nth-child(2) .flame { animation-delay: .3s; }
+    .candle:nth-child(3) .flame { animation-delay: .6s; }
+
+    @keyframes flicker {
+      from { transform: scaleY(1) skewX(-2deg); opacity: .9; }
+      to   { transform: scaleY(1.15) skewX(2deg); opacity: 1; }
+    }
+
+    .stick {
+      width: 10px;
+      height: 36px;
+      border-radius: 2px;
+    }
+
+    .wish-btn {
+      margin-top: 40px;
+      display: inline-block;
+      padding: 14px 38px;
+      background: linear-gradient(135deg, var(--rose), #c94b63);
+      color: white;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      letter-spacing: .06em;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(232,99,122,.35);
+      transition: transform .2s, box-shadow .2s;
+      animation: fadeIn 1s 1.5s both;
+    }
+
+    .wish-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(232,99,122,.45);
+    }
+
+    .confetti-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 999;
+      overflow: hidden;
+    }
+
+    .confetti-bit {
+      position: absolute;
+      width: 8px; height: 8px;
+      opacity: 0;
+      border-radius: 1px;
+    }
+
+    @keyframes confettiFall {
+      0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(61,26,36,.45);
+      backdrop-filter: blur(4px);
+      z-index: 500;
+      align-items: center;
+      justify-content: center;
+    }
+    .popup.open { display: flex; }
+
+    .popup-card {
+      background: white;
+      border-radius: 4px;
+      padding: 52px 44px;
+      max-width: 420px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 20px 80px rgba(61,26,36,.25);
+      animation: popIn .4s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    @keyframes popIn {
+      from { transform: scale(.7); opacity: 0; }
+      to   { transform: scale(1);  opacity: 1; }
+    }
+
+    .popup-card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--deep);
+      margin-bottom: 14px;
+    }
+
+    .popup-card p {
+      color: #5a3840;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .close-btn {
+      padding: 10px 30px;
+      background: none;
+      border: 1px solid var(--rose);
+      color: var(--rose);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: background .2s, color .2s;
+    }
+    .close-btn:hover { background: var(--rose); color: white; }
+  </style>
+</head>
+<body>
+
+<div class="petal-layer" id="petalLayer"></div>
+<div class="confetti-layer" id="confettiLayer"></div>
+
+<div class="card-wrap">
+  <div class="card">
+    <div class="ribbon"></div>
+
+    <span class="flowers">🌸🌷🌺</span>
+    <p class="subtitle">Хайртай шүү</p>
+    <h1>Төрсөн өдрийн мэнд хүргэе<em>хүүгээс нь</em></h1>
+
+    <div class="divider">
+      <span></span><i>✦</i><span></span>
+    </div>
+
+    <div class="candles">
+      <div class="candle">
+        <div class="flame"></div>
+        <div class="stick" style="background:linear-gradient(var(--blush),var(--rose))"></div>
+      </div>
+      <div class="candle">
+        <div class="flame"></div>
+        <div class="stick" style="background:linear-gradient(#f9c6ae,#e8a87c)"></div>
+      </div>
+      <div class="candle">
+        <div class="flame"></div>
+        <div class="stick" style="background:linear-gradient(#b5d5e8,#7bafc8)"></div>
+      </div>
+    </div>
+
+    <div class="heart-row">
+      <span class="heart">💗</span>
+      <span class="heart">💖</span>
+      <span class="heart">💗</span>
+    </div>
+
+    <button class="wish-btn" onclick="makeWish()">Лаагаа үлээх ✨</button>
+  </div>
+</div>ы
+
+<div class="popup" id="wishPopup">
+  <div class="popup-card">
+    <h2>Хүсэл тань биелэх болтугай</h2>
+    <button class="close-btn" onclick="closePopup()">Баярлалаа 🌸</button>
+  </div>
+</div>
+
+<script>
+  const colors = ['#f4b8c1','#f9dde2','#e8637a','#f7cfd5','#fde0d0','#f2a0b0'];
+  const layer  = document.getElementById('petalLayer');
+
+  for (let i = 0; i < 28; i++) {
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.style.cssText = `
+      left: ${Math.random()*100}%;
+      background: ${colors[Math.floor(Math.random()*colors.length)]};
+      width: ${12+Math.random()*14}px;
+      height: ${14+Math.random()*16}px;
+      animation-duration: ${6+Math.random()*10}s;
+      animation-delay: ${Math.random()*12}s;
+      border-radius: ${Math.random()>.5?'50% 10% 50% 10%':'10% 50% 10% 50%'};
+      opacity: 0;
+    `;
+    layer.appendChild(p);
+  }
+
+  const confColors = ['#e8637a','#f4b8c1','#c9a96e','#85c1e9','#a9dfbf','#f9e79f'];
+  const cl = document.getElementById('confettiLayer');
+
+  function burst() {
+    for (let i = 0; i < 70; i++) {
+      const bit = document.createElement('div');
+      bit.className = 'confetti-bit';
+      const x = 20 + Math.random() * 60;
+      bit.style.cssText = `
+        left: ${x}%;
+        top: 0;
+        background: ${confColors[Math.floor(Math.random()*confColors.length)]};
+        width: ${6+Math.random()*7}px;
+        height: ${6+Math.random()*7}px;
+        border-radius: ${Math.random()>.4?'50%':'2px'};
+        animation: confettiFall ${1.5+Math.random()*1.5}s ${Math.random()*.5}s ease-in forwards;
+      `;
+      cl.appendChild(bit);
+    }
+    setTimeout(() => { cl.innerHTML = ''; }, 3500);
+  }
+
+  function makeWish() {
+    burst();
+    document.getElementById('wishPopup').classList.add('open');
+  }
+
+  function closePopup() {
+    document.getElementById('wishPopup').classList.remove('open');
+  }
+
+  document.getElementById('wishPopup').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closePopup();
+  });
+</script>
+</body>
+</html>
